@@ -23,14 +23,13 @@ fizzbuzz
 =head1 SYNOPSIS
 
     $ fizzbuzz --fizz 3 --buzz 5 --start 1 --stop 100
+    $ fizzbuzz --help
 
 =head1 DESCRIPTION
 
 Prints the FizzBuzz series between C<start> and C<stop> using the values for C<fizz> and C<buzz>.
 
-See L<FizzBuzz> for attribute details or try:
-
-    $ fizzbuzz --help
+See L<FizzBuzz> for details.
 
 =head1 AUTHOR
 

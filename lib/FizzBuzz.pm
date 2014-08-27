@@ -110,15 +110,18 @@ FizzBuzz
 
 =head1 SYNOPSIS
 
-    FizzBuzz->new( fizz = 3, buzz = 5, start = 1, stop = 100 );
-        # in own code
+    my $fb_series = FizzBuzz->new( fizz = 3, buzz = 5, start = 1, stop = 100 )
+        ->series();
 
     FizzBuzz->new_with_options()->print();
-        # in commandline script
 
 =head1 DESCRIPTION
 
-Takes two numbers C<fizz> and C<buzz>.
+Creates the FizzBuzz series between C<start> and C<stop> inclusive given your C<fizz> and your C<buzz>.
+
+Has a convenience method to print the series.
+
+=head1 SERIES DEFINITION
 
 For the integers from C<start> to C<stop> inclusive, if the integer:
 
@@ -126,21 +129,19 @@ For the integers from C<start> to C<stop> inclusive, if the integer:
 
 =item
 
-is divisible by C<fizz> and not C<buzz>, prints 'Fizz'
+is divisible by C<fizz> and not C<buzz>, replaces integer with 'Fizz'
 
 =item
 
-is divisible by C<buzz> and not C<fizz>, prints 'Buzz'
+is divisible by C<buzz> and not C<fizz>, replaces integer with 'Buzz'
 
 =item
 
-is divisible by both C<fizz> and C<buzz>, prints 'FizzBuzz'
-
-=item
-
-otherwise, prints the integer
+is divisible by both C<fizz> and C<buzz>, replaces integer with 'FizzBuzz'
 
 =back
+
+otherwise, the integer is unchanged.
 
 =head1 EXAMPLE
 
@@ -171,7 +172,7 @@ I<See attributes in section below.>
 
 =head2 C<new_with_options>
 
-Like new, but lets you pass the attribute values on the command line.
+Like new, but lets you pass the attribute values on the command line if used in a script. See L<MooseX::Getopt::Dashes> for more info.
 
 =head1 ATTRIBUTES
 
@@ -207,11 +208,11 @@ An exception is raised if C<stop> is less than or equal to C<start>.
 
 =head2 C<series>
 
-Returns, as an array ref, the FizzBuzz series between C<start> and C<stop> given your C<fizz> and C<buzz>.
+Returns your FizzBuzz series as an array ref.
 
 =head2 C<print>
 
-A convenience function to print each element of your FizzBuzz C<series> followed by $/.
+Prints each element of your FizzBuzz series to STDOUT followed by $/.
 
 =head1 AUTHOR
 
