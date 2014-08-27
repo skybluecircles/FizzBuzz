@@ -61,7 +61,7 @@ sub BUILD {
     }
 
     if ( $self->stop <= $self->start ) {
-        die "stop must be less than start\n";
+        die "stop must be less than start$/";
     }
 }
 
