@@ -77,9 +77,13 @@ sub test_invalid {
         },
     );
 
+    my $exception_class = 'FizzBuzz::Exception';
+
     foreach my $test ( @tests ) {
-        like( exception { FizzBuzz->new( $test->{params} ) },
-            $test->{expected} );
+        my $exception = exception { FizzBuzz->new( $test->{params} ) };
+
+        ok( blessed $exception && $exception->isa($exception_class) );
+        like( $exception->as_string, $test->{expected} );
     }
 }
 

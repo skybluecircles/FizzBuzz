@@ -8,6 +8,8 @@ use v5.18;
 use autodie qw(:all);
 use feature qw(say);
 
+use FizzBuzz::Exception;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -55,13 +57,18 @@ sub BUILD {
     my $self = shift;
 
     if ( $self->fizz == $self->buzz ) {
-        die sprintf
+        my $message
+            = sprintf
             "fizz and buzz must be different numbers, but you passed %d for both$/",
-            $self->fizz;
+            $self->fizz();
+
+        FizzBuzz::Exception->throw( { message => $message }, );
     }
 
     if ( $self->stop <= $self->start ) {
-        die "stop must be less than start\n";
+        FizzBuzz::Exception->throw(
+            { message => "stop must be less than start" },
+        );
     }
 }
 
