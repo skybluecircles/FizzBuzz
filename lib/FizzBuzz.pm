@@ -11,6 +11,85 @@ use feature qw(say);
 use Moose;
 use MooseX::StrictConstructor;
 
+with 'MooseX::Getopt::Dashes';
+
+has fizz => (
+    is      => 'ro',
+    isa     => 'Int',
+    default => 3,
+);
+
+has buzz => (
+    is      => 'ro',
+    isa     => 'Int',
+    default => 5,
+);
+
+has _fizz_buzz => (
+    is       => 'ro',
+    isa      => 'Int',
+    builder  => '_build_fizz_buzz',
+    lazy     => 1,
+    init_arg => undef,
+);
+
+has start => (
+    is      => 'ro',
+    isa     => 'Int',
+    default => 1,
+);
+
+has stop => (
+    is      => 'ro',
+    isa     => 'Int',
+    default => 100,
+);
+
+sub _build_fizz_buzz {
+    my $self = shift;
+
+    return $self->fizz * $self->buzz;
+}
+
+sub BUILD {
+    my $self = shift;
+
+    if ( $self->fizz == $self->buzz ) {
+        die
+            "fizz and buzz must be different numbers, but you passed $self->fizz for each";
+    }
+
+    if ( $self->stop <= $self->start ) {
+        die "stop must be less than start";
+    }
+}
+
+sub print {
+    my $self = shift;
+
+    for ( $self->start .. $self->stop ) {
+        say $self->fizz_buzz_num( $_ );
+    }
+}
+
+sub fizz_buzz_num {
+    my $self = shift;
+    my $num  = shift;
+
+    if ( $num % $self->_fizz_buzz == 0 ) {
+        return 'FizzBuzz';
+    }
+    elsif ( $num % $self->buzz == 0 ) {
+        return 'Buzz';
+    }
+    elsif ( $num % $self->fizz == 0 ) {
+        return 'Fizz';
+    }
+    else {
+        return $num;
+    }
+}
+
 __PACKAGE__->meta()->make_immutable();
 
 1;
