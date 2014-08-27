@@ -67,10 +67,7 @@ sub BUILD {
 sub series {
     my $self = shift;
 
-    my @series
-        = map { $self->_fizz_buzz_num( $_ ) } $self->start .. $self->stop;
-
-    return \@series;
+    return [ map { $self->_fizz_buzz_num( $_ ) } $self->start .. $self->stop ];
 }
 
 sub print {
