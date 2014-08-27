@@ -55,19 +55,21 @@ sub BUILD {
     my $self = shift;
 
     if ( $self->fizz == $self->buzz ) {
-        die
-            "fizz and buzz must be different numbers, but you passed $self->fizz for each";
+        die sprintf
+            "fizz and buzz must be different numbers, but you passed %d for both$/",
+            $self->fizz;
     }
 
     if ( $self->stop <= $self->start ) {
-        die "stop must be less than start";
+        die "stop must be less than start\n";
     }
 }
 
 sub series {
     my $self = shift;
 
-    return [ map { $self->_fizz_buzz_num( $_ ) } $self->start .. $self->stop ];
+    return [ map { $self->_fizz_buzz_num( $_ ) }
+            $self->start .. $self->stop ];
 }
 
 sub print {
