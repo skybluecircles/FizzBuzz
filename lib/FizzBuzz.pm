@@ -64,15 +64,24 @@ sub BUILD {
     }
 }
 
+sub series {
+    my $self = shift;
+
+    my @series
+        = map { $self->_fizz_buzz_num( $_ ) } $self->start .. $self->stop;
+
+    return \@series;
+}
+
 sub print {
     my $self = shift;
 
-    for ( $self->start .. $self->stop ) {
-        say $self->fizz_buzz_num( $_ );
+    foreach my $element ( @{ $self->series } ) {
+        say $element; 
     }
 }
 
-sub fizz_buzz_num {
+sub _fizz_buzz_num {
     my $self = shift;
     my $num  = shift;
 
@@ -197,9 +206,13 @@ An exception is raised if C<stop> is less than or equal to C<start>.
 
 =head1 METHODS
 
+=head2 C<series>
+
+Returns, as an array ref, the FizzBuzz series between C<start> and C<stop> given your C<fizz> and C<buzz>.
+
 =head2 C<print>
 
-See the DESCRIPTION above for what C<print> does.
+A convenience function to print each element of your FizzBuzz C<series> followed by $/.
 
 =head1 AUTHOR
 
