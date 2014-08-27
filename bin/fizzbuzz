@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use v5.16;
+use v5.18;
 
 use autodie qw(:all);
 use feature qw(say);
@@ -23,7 +23,6 @@ fizzbuzz
 =head1 SYNOPSIS
 
     $ fizzbuzz --fizz 3 --buzz 5 --start 1 --stop 100
-    $ fizzbuzz --help
 
 =head1 DESCRIPTION
 
