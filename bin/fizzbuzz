@@ -13,3 +13,35 @@ use FizzBuzz;
 FizzBuzz->new_with_options()->print();
 
 exit 0;
+
+=pod
+
+=head1 NAME
+
+fizzbuzz
+
+=head1 SYNOPSIS
+
+    $ fizzbuzz --fizz 3 --buzz 5 --start 1 --stop 100
+
+=head1 DESCRIPTION
+
+Prints the FizzBuzz series between C<start> and C<stop> using the values for C<fizz> and C<buzz>.
+
+See L<FizzBuzz> for attribute details or try:
+
+    $ fizzbuzz --help
+
+=head1 AUTHOR
+
+William Stevenson <wds@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2014 by William Stevenson.
+
+This is free software, licensed under:
+
+    The Artistic License 2.0 (GPL Compatible)
+
+=cut
